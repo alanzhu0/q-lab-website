@@ -1,0 +1,65 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        .song-card {
+            display: flex;
+            border: solid 3px var(--orange);
+            padding: 5px;
+            margin: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-img {
+            width: 50%;
+            min-width: 50px;
+            max-width: 100px;
+        }
+
+        .title {
+            font-size: 30px;
+        }
+
+        .link {
+            color: var(--black);
+        }
+
+        .link:hover {
+            color: var(--light-blue);
+        }
+
+        .song-card:hover {
+            border-color: var(--light-blue);
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div class="center-text">
+        <h1 class="primary"><strong>Q Lab Playlist</strong></h1>
+        <hr>
+        <p class="mission-text">Hard work is powered by great music.</p>
+        <br>
+        <div class="song-box">
+            {% for song in songs %}
+                <a class="link" target="_blank" href="{{ song.link }}">
+                    <div class="row song-card">
+                        <div class="col-2">
+                            <img class="music-img" src="{% static 'img/music-note.jpeg' %}" />
+                        </div>
+                        <div class="col-7 title">
+                            <p><strong>{{ song.title }}</strong></p>
+                        </div>
+                        <div class="col-3">
+                            <p>{{ song.artist_name }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+{% endblock %}

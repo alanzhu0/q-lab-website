@@ -1,0 +1,41 @@
+nav {
+    font-size: 1.5rem;
+}
+
+.navbar {
+    padding: 0px;
+}
+
+.brand-head {
+    background-color: var(--white);
+    padding: 15px;
+}
+
+.brand-img {
+    max-width: 375px;
+    width: 30%;
+}
+
+.bar-background {
+    background-image: linear-gradient(to right, var(--blue), var(--light-blue));
+}
+
+.bar-link {
+    padding: 1rem;
+    color: var(--white);
+}
+
+.bar-link:hover, .bar-drop-item:hover {
+    color: var(--white);
+    background-color: var(--light-blue);
+}
+
+.bar-drop {
+    font-size: 1.5rem;
+    background-color: #20a0e2;
+    width: 100%;
+}
+
+.bar-drop-item {
+    color: var(--white);
+}

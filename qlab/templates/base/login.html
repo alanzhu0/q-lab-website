@@ -1,0 +1,16 @@
+
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="main">
+        <div class="login-box">
+            <p>To access this application, you must <b>log in with your Intranet account.</b></p>
+            <form action="{% url 'social:begin' 'ion' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Login with Ion">
+            </form>
+        </div>
+    </div>
+{% endblock %}

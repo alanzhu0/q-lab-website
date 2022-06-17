@@ -1,0 +1,8 @@
+# Python
+Pipfile.lock
+
+# Project specific
+db.sqlite3
+media/
+secret.py
+serve/

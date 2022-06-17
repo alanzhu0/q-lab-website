@@ -1,0 +1,55 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+<style>
+    .info-text {
+        padding: 15px;
+        margin: 5px;
+    }
+
+    .box {
+        border-color: transparent;
+        height: 90% !important;
+    }
+
+    .img {
+        width: 80%;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <div class="text-center">
+        <p class="info-text mission-text">
+            The Quantum Physics and Optics lab provides high school seniors at <a href="https://tjhsst.fcps.edu" target="_blank">
+            Thomas Jefferson High School for Science and Technology</a> with the incredible opportunity to conduct high level 
+            research and increase their knowledge of the field. None of this would be possible without our partners, who assist 
+            students in their research by offering support, guidance and mentorship. If you or your institution would be interested 
+            in partnering with us, please <a href="mailto:mshannum@fcps.edu">reach out!</a>
+        </p>
+    </div>
+    <br><hr><br>
+    <div>
+        <h1 class="primary"><strong>Partners</strong></h1>
+        <div class="left-text">
+            {% for partner in partners %}
+                <div class="box card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-lg-3 col-xl-2 center-text">
+                                <img class="img" src="{{ partner.picture.url }}" />
+                                <br>
+                            </div>
+                            <div class="col-sm-8 col-md-9 col-lg-9 col-xl-10">
+                                <h4>{{ partner.name }}</h4>
+                                <p>{{ partner.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

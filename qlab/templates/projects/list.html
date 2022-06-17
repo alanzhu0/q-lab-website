@@ -1,0 +1,72 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+<style>
+    .box {
+        padding: 10px;
+        margin: 5px;
+        height: 90% !important;
+        color: var(--black);
+    }
+
+    .box:hover {
+        border: solid 8px var(--blue);
+        color: var(--black);
+    }
+
+    .title-box {
+        border-right: solid 1px var(--blue);
+    }
+
+    .light-blue {
+        background-color: var(--light-blue);
+        border: solid 8px var(--light-blue);
+    }
+
+    .red {
+        background-color: var(--red);
+        border: solid 8px var(--red);
+    }
+
+    .orange {
+        background-color: var(--orange);
+        border: solid 8px var(--orange);
+    }
+
+    .purple {
+        background-color: var(--purple);
+        border: solid 8px var(--purple);
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <h1 class="primary"><strong>Projects</strong></h1>
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-xl-4 col-lg-6 col-sm-12">
+                <a href="{% url 'projects:project_detail' project.id %}" class="box card 
+                {% if project.id|divisibleby:'4' %}light-blue
+                {% elif project.id|divisibleby:'3' %}red
+                {% elif project.id|divisibleby:'2' %}orange
+                {% elif project.id|divisibleby:'1' %}purple
+                {% endif %}">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 text-center title-box">
+                                <p><strong>{{ project.title }}</strong></p>
+                                <p>{{ project.author_string }}</p>
+                            </div>
+                            <div class="col-7">
+                                <p>{{ project.description }}</p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

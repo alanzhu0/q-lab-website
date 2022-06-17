@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block body %}
+    <div class="brand-head">
+        <a href="{% url 'base:index' %}">
+            <img class="brand-img" src="{% static 'img/logos/long.png' %}" />
+        </a>
+    </div>
+    {% include "nav.html" %}
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+{% endblock %}

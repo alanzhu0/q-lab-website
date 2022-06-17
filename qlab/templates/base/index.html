@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        .intro {
+            height: calc(100vh - 65px);
+            background-image: url("{% static 'img/background.png' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .intro-box {
+            position: absolute;
+            top: 25vh;
+            left: 30vw;
+            border-radius: 10px;
+            width: 40vw;
+            height: 40vh;
+            background-color: #20a0e2dd;
+        }
+
+        .intro-text {
+            font-size: 8vmin;
+            color: var(--white);
+            position: relative;
+            top: calc((40vh - (8vmin + 4vmin + 8vh)) / 2);
+            text-align: center;
+            line-height: 8vh;
+        }
+
+        .intro-text-small {
+            font-size: 4vmin;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .box {
+            padding: 5px;
+            margin: 15px;
+            color: var(--black);
+            border: solid 1px var(--black);
+        }
+
+        .box:hover {
+            border: solid 4px var(--blue);
+            color: var(--black);
+        }
+
+        .title-box {
+            border-right: solid 1px var(--blue);
+        }
+
+        .twitter {
+            width: 70%;
+            position: relative;
+            left: 20%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="intro">
+        <div class="intro-box">
+            <p class="intro-text"><em class="intro-text-small">Welcome to the</em><br><strong>Q Lab!</strong></p>
+        </div>
+    </div>
+    {% include "nav.html" %}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <p class="mission-text center-text">
+                    The Quantum Physics and Optics Lab, affectionately known as the Q Lab, is a part 
+                    of <a href="https://tjhsst.fcps.edu">Thomas Jefferson High School for Science and 
+                    Technology</a> in Northern Virginia. Each year, the lab welcomes a handful of seniors 
+                    conducting their capstone research project. Equipped with state-of-the-art microscopes, 
+                    optical equipment and sensors, the Q Lab enables these young physicists to conduct 
+                    research in a college-like environment. 
+                </p>
+                <br><hr><br>
+                <h1 class="primary"><strong>Recently Updated Projects</strong></h1>
+                {% for project in projects %}
+                    <a href="{% url 'projects:project_detail' project.id %}" class="box card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-12 text-center title-box">
+                                    <p><strong>{{ project.title }}</strong></p>
+                                    <p>{{ project.author_string }}</p>
+                                </div>
+                                <div class="col-lg-7 col-md-12">
+                                    <p>{{ project.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+                <br>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="twitter">
+                    <a class="twitter-timeline" data-height="1500" href="https://twitter.com/MarketyMark?ref_src=twsrc%5Etfw">
+                        Tweets by MarketyMark
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
+                </div>              
+            </div>
+        </div>
+    </div>
+{% endblock %}

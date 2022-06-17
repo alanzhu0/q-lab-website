@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Q Lab</title>
+        <meta name="author" content="Lauren Delwiche">
+        <link rel="icon" href="{% static 'img/logos/short.png' %}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/fdf6dd33bb.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-2 col-md-1"></div>
+                <div class="col-lg-4 col-md-5 center-text">
+                    <img class="foot-img" src="{% static 'img/logos/short-moose.png' %}" />
+                </div>
+                <div class="col-lg-4 col-md-5 left-text">
+                    <h3>Contact Us!</h3>
+                    <br>
+                    <p>
+                        Mr. Mark Hannum, Lab Director
+                        <a class="icon" target="_blank" href="mailto:mshannum@fcps.edu"><i class="fa-solid fa-envelope"></i></a>
+                        <a class="icon" target="_blank" href="https://twitter.com/MarketyMark/"><i class="fa-brands fa-twitter"></i></a>
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-1"></div>
+            </div>
+        </footer>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

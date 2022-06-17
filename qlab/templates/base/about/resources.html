@@ -1,0 +1,113 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        .img {
+            width: 70%;
+            max-width: 405px;
+            max-height: 300px;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <h1 class="primary"><strong>Resources</strong></h1>
+    <br><br>
+    <div>
+        <div class="row">
+            <div class="col-6 text-center">
+                <img class="img" src="{% static 'img/moose.jpeg' %}" />
+            </div>
+            <div class="col-6">
+                <h3>Learn Quantum</h3>
+                <ul>
+                    <li>
+                        <a href="https://quantum-computing.ibm.com/" target="_blank">
+                            IBM Quantum Experience
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.youtube.com/playlist?list=PL29N_GJFqteklFVDSo0rbse1QrtWBapfq" target="_blank">
+                            Quantum Information Theory Lectures
+                        </a>
+                    </li>
+                    <li>Coming soon...</li>
+                </ul>
+            </div>
+        </div>
+        <br><hr><br>
+        <div class="row">
+            <div class="col-6 text-center">
+                <img class="img" src="{% static 'img/moose.jpeg' %}" />
+            </div>
+            <div class="col-6">
+                <h3>Articles</h3>
+                <ul>
+                    <li>
+                        <a href="https://arxiv.org/abs/2011.14533" target="_blank">
+                            Quantum Random Walks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2110.14753" target="_blank">
+                            Quantum ML - Barren Pateaus
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://phys.org/news/2022-01-quantum-silicon-accuracy.html" target="_blank">
+                            Silicon-based Qubits
+                        </a>
+                    </li>
+                    <li>Coming soon...</li>
+                </ul>                
+            </div>
+        </div>
+        <br><hr><br>
+        <div class="row">
+            <div class="col-6 text-center">
+                <img class="img" src="{% static 'img/moose.jpeg' %}" />
+            </div>
+            <div class="col-6">
+                <h3>Competitions + Games</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.classiq.io/competition?utm_campaign=Classiq%20Coding%20Contest&utm_medium=email&_hsmi=212704905&_hsenc=p2ANqtz-8RaiJnNhwP_Wo-hgzVVHHJp6Ug270mhGNslyRCs-00OrSGW8tSlYQuKkjSEmd2QR1zZE7plpCh6gpP4Sa0M8DtjHt0qA&utm_content=212704905&utm_source=hs_email#competitionForm" target="_blank">
+                            Classicq Coding
+                        </a>
+                    </li>
+                    <li>Coming soon...</li>
+                </ul>
+            </div>
+        </div>
+        <br><hr><br>
+        <div class="row">
+            <div class="col-6 text-center">
+                <img class="img" src="{% static 'img/moose.jpeg' %}" />
+            </div>
+            <div class="col-6">
+                <h3>Opportunities</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.nist.gov/iaao/summer-high-school-intern-program" target="_blank">
+                            NIST
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://internships.fnal.gov/sqms-quantum-undergraduate-internship/" target="_blank">
+                            FERMI Lab
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.ibm.com/quantum-computing/summer-school/" target="_blank">
+                            IBM Summer Camp
+                        </a>
+                    </li>
+                    <li>Coming soon...</li>
+                </ul>               
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

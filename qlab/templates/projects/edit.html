@@ -1,0 +1,31 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        #id_title {
+            width: 70%;
+            border: solid 1px var(--blue);
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <h1 class="primary"><strong>Edit Project Info</strong></h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                    <label>{{ field.label }}:</label>
+                </div>
+                <div class="col-md-10 col-sm-12">
+                    <p>{{ field }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <input class="btn q-btn" type="submit" value="Save">
+    </form>    
+{% endblock %}

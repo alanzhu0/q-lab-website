@@ -1,0 +1,19 @@
+footer {
+    background-color: var(--blue);
+    height: fit-content;
+    padding: 40px;
+    color: var(--white);
+}
+
+.foot-img {
+    width: 40%;
+}
+
+i {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.icon:hover {
+    color: var(--white);
+}

@@ -1,0 +1,124 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .slideshow-container {
+        width: 70%;
+        max-width: 800px;
+        position: relative;
+        margin: auto;
+    }
+
+    .containers {
+        display: none;
+    }
+
+    .img {
+        width: 90%;
+    }
+
+    .back, .forward {
+        cursor: pointer;
+        position: absolute;
+        top: 48%;
+        width: auto;
+        margin-top: -23px;
+        padding: 17px;
+        color: var(--black) !important;
+        font-weight: bold;
+        font-size: 19px;
+        transition: 0.4s ease;
+        border-radius: 0 5px 5px 0;
+        user-select: none;
+    }
+
+    .forward {
+        right: 0;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .back:hover, .forward:hover {
+        background-color: var(--purple);
+        color: var(--black) !important;
+    }
+
+    .info {
+        color: var(--black);
+        font-size: 16px;
+        padding: 10px 14px;
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dots {
+        cursor: pointer;
+        height: 16px;
+        width: 16px;
+        margin: 0 3px;
+        background-color: var(--black);
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.5s ease;
+    }
+
+    .enable, .dots:hover {
+        background-color: var(--purple);
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <div class="left-text">
+        <h1 class="primary"><strong>Lab Tour</strong></h1>
+        <p class="mission-text">
+            A 3D tour of the Quantum Physics and Optics Lab is coming soon!
+            For now, check out our photo carousel below as well as our 
+            <a href="{% url 'projects:project_list' %}">projects</a>, 
+            <a href="{% url 'base:about_resources' %}">resources</a> and what the lab is 
+            <a href="{% url 'base:about_music' %}">listening to.</a>
+        </p>
+    </div>
+
+    <br><br>
+
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <!-- Full images with numbers and message Info -->
+        <div class="containers center-text">
+            <img class="img" src="{% static 'img/moose.jpeg' %}">
+            <div class="info">First caption</div>
+        </div>
+    
+        <div class="containers center-text">
+            <img class="img" src="{% static 'img/music-note.jpeg' %}">
+            <div class="info">Second Caption</div>
+        </div>
+    
+        <div class="containers center-text">
+            <img class="img" src="{% static 'img/logos/short.png' %}">
+            <div class="info">Third Caption</div>
+        </div>
+    
+        <a class="back" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="forward" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+  
+    <div class="center-text">
+        <span class="dots" onclick="currentSlide(1)"></span>
+        <span class="dots" onclick="currentSlide(2)"></span>
+        <span class="dots" onclick="currentSlide(3)"></span>
+    </div>
+
+    <br><br><br>
+    <script src="{% static 'js/photo-switcher.js' %}"></script>
+{% endblock %}
