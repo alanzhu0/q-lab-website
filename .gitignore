@@ -1,5 +1,6 @@
 # Python
 Pipfile.lock
+__pycache__/
 
 # Project specific
 db.sqlite3

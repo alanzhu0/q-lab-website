@@ -77,6 +77,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'base.User'
 
+CSRF_TRUSTED_ORIGINS = ['https://qlab.sites.tjhsst.edu']
+
 LOGIN_REDIRECT_URL = reverse_lazy("base:index")
 
 LOGOUT_REDIRECT_URL = reverse_lazy("base:index")
