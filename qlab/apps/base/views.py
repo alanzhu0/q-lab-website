@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import ResearchPartner, Song, User
+from .models import CarouselPhoto, ResearchPartner, Resource, Song, User
 from ..projects.models import Project
 
 
@@ -27,7 +27,8 @@ def partners(request):
 
 
 def about_tour(request):
-    return render(request, "base/about/tour.html")
+    context = {"photos": CarouselPhoto.objects.all()}
+    return render(request, "base/about/tour.html", context=context)
 
 
 def about_music(request):
@@ -36,7 +37,13 @@ def about_music(request):
 
 
 def about_resources(request):
-    return render(request, "base/about/resources.html")
+    context = {
+        "learn": Resource.objects.filter(category="learn"),
+        "articles": Resource.objects.filter(category="articles"),
+        "comps": Resource.objects.filter(category="comps"),
+        "opps": Resource.objects.filter(category="opps"),
+    }
+    return render(request, "base/about/resources.html", context=context)
 
 
 def donate(request):

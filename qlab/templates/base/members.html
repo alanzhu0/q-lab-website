@@ -52,7 +52,7 @@
                             {% if student.picture %}
                                 <img class="img" src="{{ student.picture.url }}" />
                             {% else %}
-                                <img class="img" src="{% static 'img/moose.jpeg' %}" />
+                                <img class="img" src="{% static 'img/moose/moose.jpeg' %}" />
                             {% endif %}
                             <br><br>
                             <p><strong>{{ student.first_name }} {{ student.last_name }} ({{ student.graduation_year }})</strong></p>

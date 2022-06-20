@@ -1,15 +1,28 @@
-
 {% extends "base_with_head.html" %}
 
 {% load static %}
 
+{% block head %}
+<style>
+    .main {
+        text-align: center;
+        height: 60vh;
+    }
+
+    .login-box {
+        position: relative;
+        top: 7vh;
+    }
+</style>
+{% endblock %}
+
 {% block main %}
     <div class="main">
         <div class="login-box">
-            <p>To access this application, you must <b>log in with your Intranet account.</b></p>
+            <h4>To access this application, you must <b>log in with your Intranet account.</b></h4>
             <form action="{% url 'social:begin' 'ion' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="Login with Ion">
+                <input class="q-btn" type="submit" value="Login with Ion">
             </form>
         </div>
     </div>

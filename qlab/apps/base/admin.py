@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ResearchPartner, Song, User
+from .models import CarouselPhoto, ResearchPartner, Resource, Song, User
 
 
 @admin.action(description="Mark as Lab Student")
@@ -18,6 +18,8 @@ class UserAdmin(admin.ModelAdmin):
     actions = [mark_lab_student, mark_alumni]
 
 
+admin.site.register(CarouselPhoto)
 admin.site.register(ResearchPartner)
+admin.site.register(Resource)
 admin.site.register(Song)
 admin.site.register(User, UserAdmin)
