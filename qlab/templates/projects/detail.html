@@ -15,27 +15,40 @@
         display: inline;
         padding: 10px;
     }
+
+    .photo-gallery {
+        height: 200px;
+        padding: 5px;
+    }
 </style>
 {% endblock %}
 
 {% block main %}
     <div>
-        <h2 class="primary">{{ project.title }} <a class="q-btn admin-btn" href="{% url 'projects:project_edit' project.id %}">Edit Info</a></h2>
+        <h2 class="primary">{{ project.title }}{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:project_edit' project.id %}">Edit Info</a>{% endif %}</h2>
         <h5 class="primary">By {{ project.author_string }}</h5>
         <br>
         <h6>{{ project.description }}</h6>
     </div>
     <br><hr><br>
     <div>
-        <h2 class="primary-light">Photo Gallery</h2>
+        <h2 class="primary-light">Photo Gallery{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:photo_add' project.id %}">Add Photo</a>{% endif %}</h2>
+        <br>
+        {% for photo in photos %}
+            <img class="photo-gallery" src="{{ photo.image.url }}" />
+        {% endfor %}
+        {% if not photos %}
+            <br>
+            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Photos are coming soon!</h6>
+        {% endif %}
     </div>
-    <br>
+    <br><br>
     <div>
-        <h2 class="primary-light">Updates <a class="q-btn admin-btn" href="{% url 'projects:post_add' project.id %}">Add Post</a></h2>
+        <h2 class="primary-light">Updates{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:post_add' project.id %}">Add Post</a>{% endif %}</h2>
         {% for post in posts %}
             <div class="box card">
                 <div class="card-body">
-                        <h5>{{ post.last_updated.date }} <a href="{% url 'projects:post_edit' project.id post.id %}"><i class="fa-solid fa-pen-to-square"></i></a></h5>
+                        <h5>{{ post.last_updated.date }}{% if editor %} <a href="{% url 'projects:post_edit' project.id post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}</h5>
                         <p>{{ post.content }}</p>
                     <br>
                 </div>

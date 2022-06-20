@@ -20,3 +20,7 @@ class ProjectEditForm(forms.ModelForm):
 
 class PostForm(forms.Form):
     content = forms.CharField(max_length=5000, widget=forms.Textarea)
+
+
+class PhotoForm(forms.Form):
+    image = forms.FileField(allow_empty_file=False, required=True)

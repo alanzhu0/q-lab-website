@@ -42,3 +42,20 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post on {self.last_updated} for {self.project} by {self.author}"
+
+
+class Photo(models.Model):
+    id = models.AutoField(primary_key=True)
+
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    time_uploaded = models.DateTimeField(auto_now_add=True)
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="project_photos/")
+
+
+    def __str__(self):
+        return f"Photo for {self.project.title} (ID: {self.id})"
+
+    def can_edit(self, user):
+        return self.project.can_edit_or_post(user)

@@ -12,4 +12,5 @@ urlpatterns = [
     path("edit/<int:project_id>/", views.project_edit, name="project_edit"),
     path("post/add/<int:project_id>/", views.post_add, name="post_add"),
     path("post/edit/<int:project_id>/<int:post_id>/", views.post_edit, name="post_edit"),
+    path("photo/add/<int:project_id>/", views.photo_add, name="photo_add"),
 ]
