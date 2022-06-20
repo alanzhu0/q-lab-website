@@ -41,6 +41,10 @@
                 </div>
             </div>
         {% endfor %}
+        {% if not posts %}
+            <br>
+            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No updates yet. Stay tuned!</h6>
+        {% endif %}
     </div>
     <br>
 {% endblock %}

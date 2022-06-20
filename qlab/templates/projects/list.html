@@ -16,28 +16,56 @@
         color: var(--black);
     }
 
-    .title-box {
-        border-right: solid 1px var(--blue);
+    .light-blue {
+        background-color: #0fccef99;
+        border: solid 8px #0fccef05;
     }
 
-    .light-blue {
-        background-color: var(--light-blue);
-        border: solid 8px var(--light-blue);
+    .light-blue-hr {
+        border-color: #0fccef;
+    }
+
+    .light-blue:hover {
+        border: solid 8px #0fccef;
     }
 
     .red {
-        background-color: var(--red);
-        border: solid 8px var(--red);
+        background-color: #fa5a4699;
+        border: solid 8px #fa5a4605;
+    }
+
+    .red-hr {
+        border-color: #fa5a46;
+    }
+
+    .red:hover {
+        border: solid 8px #fa5a46;
     }
 
     .orange {
-        background-color: var(--orange);
-        border: solid 8px var(--orange);
+        background-color: #f2972999;
+        border: solid 8px #f2972905;
+    }
+
+    .orange-hr {
+        border-color: #f29729;
+    }
+
+    .orange:hover {
+        border: solid 8px #f29729; 
     }
 
     .purple {
-        background-color: var(--purple);
-        border: solid 8px var(--purple);
+        background-color: #8751f799;
+        border: solid 8px #8751f705;
+    }
+
+    .purple-hr {
+        border-color: #8751f7;
+    }
+
+    .purple:hover {
+        border: solid 8px #8751f7;    
     }
 </style>
 {% endblock %}
@@ -53,17 +81,16 @@
                 {% elif project.id|divisibleby:'2' %}orange
                 {% elif project.id|divisibleby:'1' %}purple
                 {% endif %}">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5 text-center title-box">
-                                <p><strong>{{ project.title }}</strong></p>
-                                <p>{{ project.author_string }}</p>
-                            </div>
-                            <div class="col-7">
-                                <p>{{ project.description }}</p>
-                            </div>
-                        </div>
-                        <br>
+                    <div class="card-body text-center">
+                        <p><strong>{{ project.title }}</strong></p>
+                        <p>{{ project.author_string }}</p>
+                        <hr class=" 
+                        {% if project.id|divisibleby:'4' %}light-blue-hr
+                        {% elif project.id|divisibleby:'3' %}red-hr
+                        {% elif project.id|divisibleby:'2' %}orange-hr
+                        {% elif project.id|divisibleby:'1' %}purple-hr
+                        {% endif %}">
+                        <p>{{ project.description }}</p>
                     </div>
                 </a>
             </div>
