@@ -1,5 +1,5 @@
 # Q Lab Website
-This is the official website of the TJHSST Quantum Physics and Optics Lab. It can be found at https://activities.tjhsst.edu/q-lab.
+This is the official website of the TJHSST Quantum Information and Optics Lab. It can be found at https://qlab.sites.tjhsst.edu.
 
 The site is built in [Django](https://www.djangoproject.com/) and deployed using [TJ Director](https://director.tjhsst.edu). It was built by @Laur04 and is maintained by the TJ Sysadmins and Q-Lab members. All questions should be directed jointy to academic-services@tjhsst.edu and mshannum@fcps.edu.
 
