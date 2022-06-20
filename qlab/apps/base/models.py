@@ -68,7 +68,7 @@ class Resource(models.Model):
 
     time_created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
-    link = models.CharField(max_length=200)
+    link = models.CharField(max_length=500)
 
 
     class Meta:
