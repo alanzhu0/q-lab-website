@@ -33,7 +33,7 @@ class Post(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     last_updated = models.DateTimeField(auto_now=True)
 
-    content = models.TextField(max_length=5000)
+    content = models.TextField()
 
 
     class Meta:
