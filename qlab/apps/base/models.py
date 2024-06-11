@@ -99,5 +99,8 @@ class College(models.Model):
     name = models.CharField(max_length=200)
     logo = models.FileField(upload_to="college_logos/")
 
+    class Meta:
+        ordering = ("name",)
+
     def __str__(self):
         return self.name
