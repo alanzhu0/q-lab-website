@@ -13,11 +13,17 @@ def login(request):
     return render(request, "base/login.html")
 
 
-def members(request):
+def members(request, year=None):
     context = {
-        "alumni": [(u, u.project_set.all()) for u in User.objects.filter(is_alumni=True).order_by("graduation_year", "last_name", "first_name")],
-        "students": [(u, u.project_set.all()) for u in User.objects.filter(is_lab_student=True).order_by("last_name", "first_name")],
+        "years": User.objects.filter(is_alumni=True).exclude(graduation_year__isnull=True).values_list("graduation_year", flat=True).distinct().order_by("graduation_year"),
+        "year": year,
     }
+
+    if year:
+        context["students"] = [(u, u.project_set.all()) for u in User.objects.filter(graduation_year=year, is_alumni=True).order_by("first_name")]
+    else:
+        context["students"] = [(u, u.project_set.all()) for u in User.objects.filter(is_lab_student=True).order_by("graduation_year", "first_name")]
+
     return render(request, "base/members.html", context=context)
 
 

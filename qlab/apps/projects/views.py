@@ -5,10 +5,18 @@ from django.urls import reverse
 
 from .forms import PhotoForm, PostForm, ProjectEditForm
 from .models import Photo, Post, Project
+from ..base.models import User
 
 
-def project_list(request):
-    context = {"projects": Project.objects.all().order_by("-active", "-last_updated")}
+def project_list(request, year=None):
+    context = {
+        "years": User.objects.filter(is_alumni=True).exclude(graduation_year__isnull=True).values_list("graduation_year", flat=True).distinct().order_by("graduation_year"),
+        "year": year,
+    }
+    if year:
+        context["projects"] = Project.objects.filter(authors__graduation_year=year, authors__is_alumni=True).distinct().order_by("-active", "-last_updated")
+    else:
+        context["projects"] = Project.objects.filter(authors__is_lab_student=True).distinct().order_by("-active", "-last_updated")
     return render(request, "projects/list.html", context=context)
 
 

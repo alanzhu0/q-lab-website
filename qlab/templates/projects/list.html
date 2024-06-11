@@ -109,7 +109,13 @@
 </script>
 {% endblock %}
 {% block main %}
-    <h1 class="primary"><strong>Projects</strong></h1>
+    <h1 class="primary">
+        {% if not year %}
+        <strong>Current Projects</strong>
+        {% else %}
+        <strong>Alumni Projects - Graduation Year: {{ year }}</strong>
+        {% endif %}
+    </h1>
     <div class="row">
         {% for project in projects %}
             <div class="col-xl-4 col-lg-6 col-sm-12">
@@ -134,5 +140,20 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <br><hr><br>
+    <div class="alumni-container">
+        <h1 class="primary"><strong>Alumni Projects</strong></h1>
+        Click on a year to see projects by alumni that graduated in that year.
+        <br>
+        <ul>
+       {% for year in years %}
+        <li>
+            <a href="{% url 'projects:project_list' year %}">{{ year }}</a>
+            <br>
+        </li>
+       {% endfor %}
+    </ul>
+    <br>
     </div>
 {% endblock %}
