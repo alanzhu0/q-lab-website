@@ -10,16 +10,20 @@ class User(AbstractUser):
 
     is_alumni = models.BooleanField(default=False)
     is_lab_student = models.BooleanField(default=False)
+    
+    display_first_last = models.BooleanField(default=False, verbose_name="Display first and last name")
 
     picture = models.FileField(upload_to="student_photos/", blank=True, null=True)
-
 
     class Meta:
         ordering = ("last_name", "first_name")
 
-
     def get_social_auth(self):
         return self.social_auth.get(provider="ion")
+    
+    @property
+    def display_name(self):
+        return f"{self.first_name} {self.last_name}" if self.display_first_last else self.first_name
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

@@ -16,7 +16,7 @@ class Project(models.Model):
         return self.title
 
     def author_string(self):
-        return ", ".join([str(u) for u in self.authors.all()])
+        return ", ".join([u.display_name for u in self.authors.all()])
 
     def can_edit_or_post(self, user):
         return user in self.authors.all() or user.is_superuser

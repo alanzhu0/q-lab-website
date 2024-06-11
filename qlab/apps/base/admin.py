@@ -13,9 +13,16 @@ def mark_alumni(modeladmin, request, queryset):
     queryset.update(is_lab_student=False)
     queryset.update(is_alumni=True)
 
+@admin.action(description="Display First/Last Name")
+def display_first_last(modeladmin, request, queryset):
+    queryset.update(display_first_last=True)
+
+def full_name(obj):
+    return f"{obj.first_name} {obj.last_name}"
 
 class UserAdmin(admin.ModelAdmin):
-    actions = [mark_lab_student, mark_alumni]
+    actions = [mark_lab_student, mark_alumni, display_first_last]
+    list_display = (full_name, "graduation_year", "is_lab_student", "is_alumni", "display_first_last")
 
 
 admin.site.register(CarouselPhoto)
