@@ -6,14 +6,14 @@ class User(AbstractUser):
     id = models.AutoField(primary_key=True)
 
     graduation_year = models.IntegerField(blank=True, null=True)
-    college = models.CharField(max_length=100, blank=True, null=True)
 
     is_alumni = models.BooleanField(default=False)
     is_lab_student = models.BooleanField(default=False)
     
     display_first_last = models.BooleanField(default=False, verbose_name="Display first and last name")
 
-    picture = models.FileField(upload_to="student_photos/", blank=True, null=True)
+    picture = models.FileField(upload_to="student_photos/", blank=True, null=True, help_text="Deprecated. Select college instead.")
+    college = models.ForeignKey("College", on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
         ordering = ("last_name", "first_name")
@@ -93,3 +93,11 @@ class Song(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.artist_name}"
+
+
+class College(models.Model):
+    name = models.CharField(max_length=200)
+    logo = models.FileField(upload_to="college_logos/")
+
+    def __str__(self):
+        return self.name
