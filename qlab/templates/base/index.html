@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load markdown_extras %}
+
 
 {% block head %}
     <style>
@@ -60,7 +62,33 @@
             position: relative;
             left: 20%;
         }
+        
+        .card {
+            cursor: pointer;
+        }
     </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [["$", "$"], ["\\\\(", "\\\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+                processEscapes: true
+            },
+            config: ["MMLorHTML.js"],
+            jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+            extensions: ["MathMenu.js", "MathZoom.js"]
+        });
+    </script>
+    <script>
+        $(function() {
+            $("div.card").click(function() {
+                window.location.href = $(this).attr("href");
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -85,19 +113,17 @@
                 <br><hr><br>
                 <h1 class="primary"><strong>Recently Updated Projects</strong></h1>
                 {% for project in projects %}
-                    <a href="{% url 'projects:project_detail' project.id %}" class="box card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-12 text-center title-box">
-                                    <p><strong>{{ project.title }}</strong></p>
-                                    <p>{{ project.author_string }}</p>
-                                </div>
-                                <div class="col-lg-7 col-md-12">
-                                    <p>{{ project.description }}</p>
-                                </div>
+                    <div class="box card card-body" href="{% url 'projects:project_detail' project.id %}">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 text-center title-box">
+                                <p><strong>{{ project.title | markdown | safe }}</strong></p>
+                                <p>{{ project.author_string }}</p>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                {{ project.description | markdown | safe }}
                             </div>
                         </div>
-                    </a>
+                    </div>
                 {% endfor %}
                 <br>
             </div>

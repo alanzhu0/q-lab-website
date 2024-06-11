@@ -39,10 +39,12 @@
 
 {% block main %}
     <div>
-        <h2 class="primary">{{ project.title }}{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:project_edit' project.id %}">Edit Info</a>{% endif %}</h2>
-        <h5 class="primary">By {{ project.author_string }}</h5>
+        <h2 class="primary">{{ project.title | markdown | safe }}</h2>
+        <h5 class="primary">By {{ project.author_string }}
+            {% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:project_edit' project.id %}">Edit Info</a>{% endif %}
+        </h5>
         <br>
-        <h6>{{ project.description }}</h6>
+        <h6>{{ project.description | markdown | safe }}</h6>
     </div>
     <br><hr><br>
     <div>

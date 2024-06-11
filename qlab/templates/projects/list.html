@@ -1,13 +1,18 @@
 {% extends "base_with_head.html" %}
 
 {% load static %}
+{% load markdown_extras %}
 
 {% block head %}
 <style>
+    main > .row {
+        row-gap: 20px;
+    }
+    
     .box {
-        padding: 10px;
-        margin: 5px;
-        height: 90% !important;
+        padding: 0;
+        margin: 0;
+        height: 98% !important;
         color: var(--black);
     }
 
@@ -67,32 +72,66 @@
     .purple:hover {
         border: solid 8px #8751f7;    
     }
+    
+    .card > hr {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .card {
+        cursor: pointer;
+    }
+    
+    a {
+        color: #007bff;
+    }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [["$", "$"], ["\\\\(", "\\\\)"]],
+            displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+            processEscapes: true
+        },
+        config: ["MMLorHTML.js"],
+        jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+        extensions: ["MathMenu.js", "MathZoom.js"]
+    });
+</script>
+<script>
+    $(function() {
+        $("div.card").click(function() {
+            window.location.href = $(this).attr("href");
+        });
+    });
+</script>
 {% endblock %}
-
 {% block main %}
     <h1 class="primary"><strong>Projects</strong></h1>
     <div class="row">
         {% for project in projects %}
             <div class="col-xl-4 col-lg-6 col-sm-12">
-                <a href="{% url 'projects:project_detail' project.id %}" class="box card 
+                <div class="box card card-body text-center
                 {% if project.id|divisibleby:'4' %}light-blue
                 {% elif project.id|divisibleby:'3' %}red
                 {% elif project.id|divisibleby:'2' %}orange
                 {% elif project.id|divisibleby:'1' %}purple
-                {% endif %}">
-                    <div class="card-body text-center">
-                        <p><strong>{{ project.title }}</strong></p>
-                        <p>{{ project.author_string }}</p>
-                        <hr class=" 
-                        {% if project.id|divisibleby:'4' %}light-blue-hr
-                        {% elif project.id|divisibleby:'3' %}red-hr
-                        {% elif project.id|divisibleby:'2' %}orange-hr
-                        {% elif project.id|divisibleby:'1' %}purple-hr
-                        {% endif %}">
-                        <p>{{ project.description }}</p>
-                    </div>
-                </a>
+                {% endif %}"
+                href="{% url 'projects:project_detail' project.id %}"
+                >
+                    <p><strong>{{ project.title | markdown | safe }}</strong></p>
+                    <p>{{ project.author_string }}</p>
+                    <hr class=" 
+                    {% if project.id|divisibleby:'4' %}light-blue-hr
+                    {% elif project.id|divisibleby:'3' %}red-hr
+                    {% elif project.id|divisibleby:'2' %}orange-hr
+                    {% elif project.id|divisibleby:'1' %}purple-hr
+                    {% endif %}">
+                    
+                    <p>{{ project.description | markdown | safe }}</p>
+                </div>
             </div>
         {% endfor %}
     </div>
