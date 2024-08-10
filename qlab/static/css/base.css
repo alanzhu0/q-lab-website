@@ -89,3 +89,13 @@ textarea {
     font-size: 14pt;
     font-weight: bold;
 }
+
+.fcps-only {
+    font-size: 0.75rem;
+    margin-right: 15px
+}
+
+.urls-row {
+    margin-bottom: 30px;
+    text-align: center;
+}

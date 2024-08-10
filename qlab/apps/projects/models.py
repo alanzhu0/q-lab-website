@@ -11,6 +11,10 @@ class Project(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
+    poster_url = models.URLField(blank=True)
+    presentation_url = models.URLField(blank=True)
+    video_url = models.URLField(blank=True)
+    paper_url = models.URLField(blank=True)
 
     def __str__(self):
         return self.title
@@ -23,6 +27,17 @@ class Project(models.Model):
 
     def get_last_post(self):
         return self.post_set.all()[0]
+
+    def has_info_urls(self):
+        return self.poster_url or self.presentation_url or self.video_url or self.paper_url
+
+    def info_urls(self):
+        return {
+            "Poster": self.poster_url,
+            "Presentation": self.presentation_url,
+            "Paper": self.paper_url,
+            "Video": self.video_url,
+        }
 
 
 class Post(models.Model):

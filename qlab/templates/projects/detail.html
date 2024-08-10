@@ -45,6 +45,22 @@
         </h5>
         <br>
         <h6>{{ project.description | markdown | safe }}</h6>
+        {% if project.has_info_urls %}
+        <div class="row urls-row">
+            {% for name, url in project.info_urls.items %}
+                {% if url %}
+                <div class="col">
+                    <a href="{{ url }}" target="_blank">
+                        {{ name }}
+                        {% if name == "Video" %}
+                        <span class="fcps-only">(FCPS only)</span>
+                        {% endif %}
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
     <br><hr><br>
     <div>

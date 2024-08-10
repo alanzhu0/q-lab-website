@@ -121,6 +121,23 @@
                             </div>
                             <div class="col-lg-7 col-md-12">
                                 {{ project.description | markdown | safe }}
+                                {% if project.has_info_urls %}
+                                <hr>
+                                <div class="row urls-row">
+                                    {% for name, url in project.info_urls.items %}
+                                        {% if url %}
+                                        <div class="col">
+                                            <a href="{{ url }}">
+                                                {{ name }}
+                                                {% if name == "Video" %}
+                                                <span class="fcps-only">(FCPS only)</span>
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
