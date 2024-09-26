@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Photo, Project, Post
+from .models import Photo, Project, Post, File
 
 
 @admin.action(description="Mark inactive")
@@ -21,3 +21,4 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Post)
 admin.site.register(Photo)
+admin.site.register(File)

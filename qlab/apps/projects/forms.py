@@ -24,3 +24,9 @@ class PostForm(forms.Form):
 
 class PhotoForm(forms.Form):
     image = forms.FileField(allow_empty_file=False, required=True)
+
+
+class FileForm(forms.Form):
+    title = forms.CharField(max_length=100, required=True)
+    description = forms.CharField(widget=forms.Textarea, required=False)
+    file = forms.FileField(allow_empty_file=False, required=True)

@@ -3,8 +3,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from .forms import PhotoForm, PostForm, ProjectEditForm
-from .models import Photo, Post, Project
+from .forms import PhotoForm, PostForm, ProjectEditForm, FileForm
+from .models import Photo, Post, Project, File
 from ..base.models import User
 
 
@@ -28,6 +28,7 @@ def project_detail(request, project_id):
         "project": project,
         "posts": project.post_set.all(),
         "photos": project.photo_set.all(),
+        "files": project.file_set.all(),
     }
 
     return render(request, "projects/detail.html", context=context)
@@ -118,5 +119,30 @@ def photo_add(request, project_id):
                 return redirect(reverse("projects:project_detail", args=[project.id]))
         
         return render(request, "projects/photo.html", context={"project": project, "form": form})
+    else:
+        raise PermissionDenied
+
+
+@login_required
+def file_add(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+
+    if project.can_edit_or_post(request.user):
+        form = FileForm()
+
+        if request.method == "POST":
+            form = FileForm(request.POST, request.FILES)
+            if form.is_valid():
+                file = File.objects.create(
+                    project=project,
+                    owner=request.user,
+                    title=form.cleaned_data["title"],
+                    description=form.cleaned_data["description"],
+                    file=form.cleaned_data["file"],
+                )
+                project.save()
+                return redirect(reverse("projects:project_detail", args=[project.id]))
+        
+        return render(request, "projects/file.html", context={"project": project, "form": form})
     else:
         raise PermissionDenied

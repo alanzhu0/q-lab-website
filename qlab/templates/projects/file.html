@@ -1,0 +1,27 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        #id_title {
+            width: 70%;
+        }
+
+        .height-holder {
+            height: 25vh;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <h1 class="primary"><strong>Add File</strong></h1>
+    <h5>Project: {{ project }}</h5>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn q-btn" type="submit" name="button-save" value="Save">
+    </form>
+    <div class="height-holder"></div>
+{% endblock %}

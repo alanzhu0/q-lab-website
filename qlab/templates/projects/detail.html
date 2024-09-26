@@ -64,6 +64,22 @@
     </div>
     <br><hr><br>
     <div>
+        <h2 class="primary-light">Files and Resources{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:file_add' project.id %}">Add File</a>{% endif %}</h2>
+        {% for file in files %}
+            <div class="box card">
+                <div class="card-body">
+                    <h5>{{ file.title }} <a href="{{ file.file.url }}"><i class="fa-solid fa-download"></i></a></h5>
+                    <p>{{ file.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        {% if not files %}
+            <br>
+            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files are coming soon!</h6>
+        {% endif %}
+    </div>
+    <br><br>
+    <div>
         <h2 class="primary-light">Photo Gallery{% if editor %} <a class="q-btn admin-btn" href="{% url 'projects:photo_add' project.id %}">Add Photo</a>{% endif %}</h2>
         <br>
         {% for photo in photos %}

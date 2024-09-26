@@ -74,3 +74,21 @@ class Photo(models.Model):
 
     def can_edit(self, user):
         return self.project.can_edit_or_post(user)
+    
+
+class File(models.Model):
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    time_uploaded = models.DateTimeField(auto_now_add=True)
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="project_files/")
+
+    title = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
+
+
+    def __str__(self):
+        return f"File for {self.project.title} (ID: {self.id})"
+
+    def can_edit(self, user):
+        return self.project.can_edit_or_post(user)

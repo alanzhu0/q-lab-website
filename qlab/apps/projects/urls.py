@@ -14,4 +14,5 @@ urlpatterns = [
     path("post/add/<int:project_id>/", views.post_add, name="post_add"),
     path("post/edit/<int:project_id>/<int:post_id>/", views.post_edit, name="post_edit"),
     path("photo/add/<int:project_id>/", views.photo_add, name="photo_add"),
+    path("file/add/<int:project_id>/", views.file_add, name="file_add"),
 ]
