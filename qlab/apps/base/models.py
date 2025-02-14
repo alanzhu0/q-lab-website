@@ -32,8 +32,8 @@ class User(AbstractUser):
 class ResearchPartner(models.Model):
     id = models.AutoField(primary_key=True)
 
-    name = models.CharField(max_length=50)
-    description = models.TextField(max_length=500)
+    name = models.CharField(max_length=500)
+    description = models.TextField()
 
     picture = models.FileField(upload_to="partner_photos/")
 
